@@ -3237,6 +3237,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 
 - (void)deleteBackward {
     [self _updateIfNeeded];
+    // Text changes may leave stale UTF-16 offsets. Correct the selection before
+    // accessing the preceding character, and notify the input system via the setter.
+    self.selectedTextRange = [self _correctedTextRange:_selectedTextRange];
     NSRange range = _selectedTextRange.asRange;
     if (range.location == 0 && range.length == 0) return;
     _state.typingAttributesOnce = NO;
