@@ -190,6 +190,12 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 @synthesize autocapitalizationType = _autocapitalizationType;
 @synthesize autocorrectionType = _autocorrectionType;
 @synthesize spellCheckingType = _spellCheckingType;
+// Implement optional traits so callers can configure automatic text substitutions.
+@synthesize smartQuotesType = _smartQuotesType;
+@synthesize smartDashesType = _smartDashesType;
+@synthesize smartInsertDeleteType = _smartInsertDeleteType;
+@synthesize inlinePredictionType = _inlinePredictionType;
+@synthesize mathExpressionCompletionType = _mathExpressionCompletionType;
 @synthesize keyboardType = _keyboardType;
 @synthesize keyboardAppearance = _keyboardAppearance;
 @synthesize returnKeyType = _returnKeyType;
@@ -1955,6 +1961,15 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     _autocapitalizationType = UITextAutocapitalizationTypeSentences;
     _autocorrectionType = UITextAutocorrectionTypeDefault;
     _spellCheckingType = UITextSpellCheckingTypeDefault;
+    _smartQuotesType = UITextSmartQuotesTypeDefault;
+    _smartDashesType = UITextSmartDashesTypeDefault;
+    _smartInsertDeleteType = UITextSmartInsertDeleteTypeDefault;
+    if (@available(iOS 17.0, *)) {
+        _inlinePredictionType = UITextInlinePredictionTypeDefault;
+    }
+    if (@available(iOS 18.0, *)) {
+        _mathExpressionCompletionType = UITextMathExpressionCompletionTypeDefault;
+    }
     _keyboardType = UIKeyboardTypeDefault;
     _keyboardAppearance = UIKeyboardAppearanceDefault;
     _returnKeyType = UIReturnKeyDefault;
